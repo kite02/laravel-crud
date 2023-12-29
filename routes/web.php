@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/books',[BookController::class,'index'])->middleware(['auth', 'verified'])->name('books');
 
 Route::get('/users/create', [UsersController::class,'create'])->middleware(['auth', 'verified']);
 Route::get('/users', [UsersController::class,'index'])->middleware(['auth', 'verified'])->name('users');
