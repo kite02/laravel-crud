@@ -13,6 +13,10 @@ class BookController extends Controller
         return view('books.index');
     }
 
+    public function show($slug){
+        return view('books.show');
+    }
+
     public function store(){
         $attributes = array_merge($this->validatePost(), [
             'user_id' => request()->user()->id,

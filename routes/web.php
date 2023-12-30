@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/books',[BookController::class,'index'])->middleware(['auth', 'verified'])->name('books');
+Route::get('/books/{slug}',[BookController::class,'show'])->middleware(['auth', 'verified']);
 
 Route::get('/users/create', [UsersController::class,'create'])->middleware(['auth', 'verified']);
 Route::get('/users', [UsersController::class,'index'])->middleware(['auth', 'verified'])->name('users');
