@@ -3,6 +3,15 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Books') }}
         </h2>
+        <br>
+
+        <form x-data="{show:false}">
+            <x-primary-button @click="show = !show">
+                Create New Book
+            </x-primary-button>
+        </form>
+
+
     </x-slot>
 
     <div class="py-12">
@@ -80,6 +89,32 @@
                 </div>
             </div>
         </div>
+        <x-modal name="modal" id="modal" show="show" maxWidth="sm">
 
+            <form method="POST" action="books/create">
+                <div class="flex flex-auto gap-4 flex-col">
+                    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                        Create a New Book</h2>
+                    <x-input-label for="title">
+                        Title
+                        <x-text-input class="w-full" name="title" id="title"/>
+                    </x-input-label>
+                    <x-input-label for="author">
+                        Author:
+                        <x-text-input class="w-full" name="author" id="author"/>
+                    </x-input-label>
+                    <x-input-label for="description">
+                        Description:
+                        <x-text-input class="w-full" name="description" id="description"/>
+                    </x-input-label>
+                    <x-input-label for="thumbnail">
+                        Thumbnail
+                        <x-text-input class="w-full" type="file" name="thumbnail" id="thumbnail"/>
+                    </x-input-label>
+                    <x-primary-button class="w-auto mx-auto">Submit</x-primary-button>
+                </div>
+            </form>
+        </x-modal>
     </div>
+
 </x-app-layout>

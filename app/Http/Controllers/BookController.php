@@ -17,6 +17,13 @@ class BookController extends Controller
         return view('books.show');
     }
 
+    public function create()
+    {
+
+    }
+
+
+
     public function store(){
         $attributes = array_merge($this->validatePost(), [
             'user_id' => request()->user()->id,
@@ -25,7 +32,7 @@ class BookController extends Controller
 
         Book::create($attributes);
 
-        return redirect('/books');
+        return back()->with('success',"book created");
 
     }
 
@@ -37,7 +44,7 @@ class BookController extends Controller
             'title' => 'required',
             'thumbnail' => $book->exists ? ['image'] : ['required', 'image'],
             'author' => 'required',
-            'genre' => 'required'
+            'description' => 'required',
         ]);
 
     }
