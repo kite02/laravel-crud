@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        return view('books.index');
+        return view('books.index',['books'=>Book::paginate(5)]);
     }
 
     public function show($slug){
@@ -25,10 +25,12 @@ class BookController extends Controller
 
 
     public function store(){
+
         $attributes = array_merge($this->validatePost(), [
-            'user_id' => request()->user()->id,
-            'thumbnail' => request()->file('thumbnail')->store('thumbnails')
+            'thumbnail' => request()->file('thumbnail')->store('thumbnails','public'),
+            'slug' => str_replace(' ','-',request()->title),
         ]);
+
 
         Book::create($attributes);
 
