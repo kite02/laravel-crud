@@ -14,7 +14,7 @@ class BookController extends Controller
     }
 
     public function show($slug){
-        return view('books.show');
+        return view('books.show',['book'=>Book::all()->where('slug',$slug)->first()]);
     }
 
     public function create()

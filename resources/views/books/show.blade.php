@@ -1,19 +1,27 @@
 <x-app-layout>
+
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex flex-auto">
+            <button
+                action="action"
+                onclick="window.history.go(-1); return false;"
+                type="submit"
+                value="Cancel"
+            > <<<</button>
+        <h2 class="font-semibold text-xl ml-10 text-gray-800 leading-tight">
             {{ __('Book Info') }}
         </h2>
+        </div>
     </x-slot>
 
     <div class="py-12">
         <div class="flex flex-auto">
-        <img class="w-full h-96" src="{{asset('storage/thumbnails/kingavatar.jpg')}}">
+        <img class="w-96 h-96" src="{{asset('storage/'.$book->thumbnail)}}">
 
         <div class="flex flex-col px-10">
-            <h1>The King's Avatar</h1>
+            <h1>{{$book->title}}</h1>
             <p class="text-gray-700 text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et
-                perferendis eaque, exercitationem praesentium nihil.
+                {{$book->description}}
             </p>
         </div>
         </div>
